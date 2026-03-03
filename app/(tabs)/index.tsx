@@ -98,8 +98,8 @@ export default function HomeScreen() {
     if (!title) {
       Toast.show({
         type: "error",
-        text1: "Título vacío",
-        text2: "No puedes agregar un hábito sin título",
+        text1: "Error",
+        text2: "No puedes agregar un hábito sin un título",
       });
       return; }
 
@@ -135,6 +135,7 @@ export default function HomeScreen() {
         onChangeText={setNuevo}
         placeholder="Nuevo hábito (ej 'Dormir 8 horas')"
         onSubmitEditing={agregarHabito}
+        placeholderTextColor={muted}
         style={[styles.input, 
               { backgroundColor: surface, borderColor: border, color: text }]}
        
@@ -186,8 +187,8 @@ const styles = StyleSheet.create({
 
   } */
 
-row: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  input: { flex: 1, borderWidth: 1, padding: 12, borderRadius: 8 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  input: { flex: 1, borderWidth: 1, padding: 12, borderRadius: 8, color: "#b11e1e" },
   button: { paddingHorizontal: 16, paddingVertical: 12, borderWidth: 1, borderRadius: 8 },
 
 
