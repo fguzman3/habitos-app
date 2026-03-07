@@ -14,11 +14,15 @@ export default function HabitGreeting({nombre = "Amanda"}) {
           {saludo}
           {nombre ? `, ${nombre}!` : ""}
             </ThemedText>
-            <ThemedText style={Styles.subtitle}>
-                { /* El siguiente linea de código me muestra en pantalla la fecha y hora actual ejemplo: 28/09/2024 - 14:30:45 */} 
+          
+           {/*  <ThemedText style={Styles.subtitle}>
                 {fecha.toLocaleDateString("es-ES",
-                { day: "2-digit", month: "2-digit", year: "numeric" })} - {fecha.toLocaleTimeString()}    
-            </ThemedText>
+                { day: "2-digit", month: "2-digit", year: "numeric" })} - {fecha.toLocaleTimeString()}    */} 
+
+          <ThemedText style={Styles.subtitle}>
+             { /* El siguiente linea de código me muestra en pantalla la fecha y hora actual ejemplo: 28/09/2024 - 14:30:45 */} 
+            {`${fecha.toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })} - ${fecha.toLocaleTimeString()}`}
+              </ThemedText>
 
       </ThemedView>
     );

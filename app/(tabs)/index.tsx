@@ -1,11 +1,11 @@
 import HabitCard from '@/components/HabitCard';
 import HabitGreeting from '@/components/HabitGreeting';
+import PrimaryButton from '@/components/PrimaryButton';
 import ProfileHeader from '@/components/ProfileHeader';
 import Screen from '@/components/Screen';
-import { ThemedText } from '@/components/themed-text';
 import { useThemeColor } from '@/hooks/use-theme-color';
 import { useCallback, useMemo, useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
 /* Uso el hook useTheme para obtener el color de fondo del tema actual, y lo asigno a la variable surface,border,success, etc...
@@ -106,7 +106,7 @@ export default function HomeScreen() {
     setItems(prev => [
       ...prev,
       {
-        id: `h${Date.now()}`, // se crea el id de concatenando la letra h con el timestamp actual, para asegurar que sea unico.
+        id: `h${Date.now()}`, // se crea un id de cada habito, concatenando la letra h con el timestamp actual, para asegurar que sea unico.
         title,
         streak: 0,
         isComplete: false,
@@ -128,6 +128,7 @@ export default function HomeScreen() {
   
        <ProfileHeader name={nombre} role={role} />
         <HabitGreeting nombre={nombre}  />
+         
       <View style={[styles.row, { alignItems: "center" }]}>
 
       <TextInput
@@ -141,51 +142,47 @@ export default function HomeScreen() {
        
       />
 
-      <Pressable
+        <PrimaryButton 
+            title='Agregar Habito' 
+            onPress={agregarHabito} 
+            disabled={false}
+        />
+
+      {/* <Pressable   // se elimina el boton inicial y se crea un componente de boton llamado primarybutton
       onPress={agregarHabito}
       style={[styles.button, { backgroundColor: success }]}>
         <ThemedText type="defaultSemiBold" style={{ color: onPrimary }}>
           Agregar
         </ThemedText>
-      </Pressable>
+      </Pressable> */}
 
       </View>
-        <View style={{ gap: 12 }}>
-          {items.map(h => (
-            <HabitCard key={h.id} {...h } onToggle={() => toogle(h.id)} />  
-            /*<---- Esta es otra forma de pasar las props al componente, 
-              usando el operador spread para pasar todas las propiedades del objeto h como props 
+       
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={
+          {
+            paddingBottom: 32,
+            gap: 16
+          }
+        }
+            >
+          {/* Esta es otra forma de pasar las props al componente, usando el operador spread para pasar todas las propiedades del objeto h como props 
               al componente HabitCard, en lugar de pasar cada propiedad individualmente, 
               que seria lo mismo de la linea anterior.  
-            */
+            */}
+          {items.map(h => (
+            <HabitCard key={h.id} {...h } onToggle={() => toogle(h.id)} />  
       ))}
-        </View>   
+        </ScrollView>   
+       
       
 </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-/*   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#F2F6FF",
-    padding: 24,
-    gap: 8
-  },
 
-  title: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#0F172A"
-  },
-
-  subtitle: {
-    fontSize: 14,
-    color: "#334155"
-
-  } */
 
   row: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   input: { flex: 1, borderWidth: 1, padding: 12, borderRadius: 8, color: "#b11e1e" },

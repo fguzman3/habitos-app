@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     // streak: { fontSize: 12, color: "#a6b3c6" },
     // badge: { fontSize: 12,  },
 
-     title: { fontSize: 16, fontWeight: "bold"},
+    title: { fontSize: 16, fontWeight: "bold"},
     streak: { fontSize: 12 },
     badge: { fontSize: 12, color: "#0ead3b" }
     
